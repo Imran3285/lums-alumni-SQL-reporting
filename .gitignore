@@ -1,0 +1,10 @@
+# Never commit data - it contains personal information (GDPR)
+*.xlsx
+*.xls
+*.csv
+*.db
+*.bak
+*.bacpac
+*_insert_data.sql
+*_FULL.sql
+data/

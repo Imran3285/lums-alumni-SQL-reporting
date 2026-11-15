@@ -1,6 +1,6 @@
 /* =====================================================================
    LUMS Alumni Analytics - SQL Portfolio (T-SQL, Azure SQL Database)
-   Author : <your name>          Last updated: 2026-11-14
+   Author : <Muhammad Imran>          Last updated: 2026-11-14
    Data   : 22,794 alumni records merged from 4 sources (alumni office
             records, LinkedIn scrapes), cleaned and loaded into a
             4-table relational model keyed on roll_number.

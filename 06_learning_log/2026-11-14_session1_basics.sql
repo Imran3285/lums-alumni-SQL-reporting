@@ -10,17 +10,30 @@ FROM alumni
 WHERE gender = 'Female';
 
 -- R2. How many alumni live in Islamabad?           Target: 1,347
--- My query:
-
+SELECT COUNT(*) AS alumni_in_islamabad
+FROM contact
+WHERE city = 'Islamabad';
 
 -- R3. MBA graduates 2015-2020?                     Target: 402
--- My query:
-
+-- Learned: BETWEEN includes both end years.
+SELECT COUNT(*) AS mba_2015_2020
+FROM education
+WHERE program = 'MBA'
+  AND graduation_year BETWEEN 2015 AND 2020;
 
 -- R4. Countries with 500+ alumni, biggest first.   Target: 5 countries
--- My query:
-
+-- Learned: HAVING filters groups after counting.
+SELECT country, COUNT(*) AS alumni
+FROM contact
+WHERE country IS NOT NULL
+GROUP BY country
+HAVING COUNT(*) >= 500
+ORDER BY alumni DESC;
 
 -- R5. How many alumni currently work at Engro?     Target: 59
--- My query:
+-- Learned: LIKE '%Engro%' catches every Engro company name.
+SELECT COUNT(*) AS engro_alumni
+FROM alumni AS a
+JOIN employment AS m ON m.roll_number = a.roll_number
+WHERE m.current_company LIKE '%Engro%';
 

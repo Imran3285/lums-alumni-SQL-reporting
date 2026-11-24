@@ -1,6 +1,6 @@
 # LUMS Alumni Analytics – SQL Project
 
-I manage the LUMS alumni database (44,000+ records) in the Office of Advancement and answer **data requests from multiple departments every day**. This repository shows how that work is done: a clean relational database on **Azure SQL**, validated, and queried with **T-SQL** to deliver accurate lists and reports on time.
+I manage the LUMS alumni database (44,000+ records) in the Office of Advancement and turn **data requests from departments across the university into accurate, verified lists, every day**. This repository shows how: a relational database on **Azure SQL**, validated, and queried with **T-SQL**.
 
 > **No personal data is stored in this repository.** It holds SQL code, table structure and documentation only. The practice database used here has 22,794 records.
 
@@ -8,25 +8,29 @@ I manage the LUMS alumni database (44,000+ records) in the Office of Advancement
 
 | | |
 |---|---|
-| **Database** | Azure SQL Database, 4 tables linked by `roll_number` |
-| **Records** | 22,794 alumni (practice set; the full database has 44,000+) |
+| **Database** | Azure SQL Database: 4 tables linked by `roll_number` |
+| **Records** | 22,794 in this practice set (the full database has 44,000+) |
 | **Requests documented** | 8 real requests, a sample of everyday work |
-| **Tools** | T-SQL, Excel, Python, Git |
+| **Tools** | T-SQL, Excel, CRM, Power BI, Python, Git |
 
-## The work behind LUMS events
+## Who I deliver data for
 
-Most alumni events and visits at LUMS start with a data request. Typical requests I deliver:
-
-| Event or need | Data delivered |
+| Requester | What they need |
 |---|---|
-| **New York reunion** and the **LUMS at 40 Gala in New York** (hosted by Friends of LUMS USA) | Alumni working or studying in the US, by city and seniority |
-| **UK and Canada reunions** (London, Toronto) | Alumni living or working in each country, with current contact details |
-| **Ambassador and delegation visits** to LUMS | Alumni living, working or studying in the visiting country |
-| **Alumni Homecoming** and the **Alumni Achievement Awards** | Batch lists, award winners and their current details |
-| **University rankings** (QS) and internal reports | Counts and lists in the requester's own template |
-| **Department and team visits** in Pakistan | Alumni by city, with a flag for how sure we are they live there now |
+| **American Business Forum (ABF) and LUMS events** | Alumni and non-alumni attendee lists for invitations, including an event with the IT Minister and a follow-up event in Islamabad |
+| **International delegations** (Japan, US, UK and others) | Alumni relevant to each delegation, by country, sector or role |
+| **Alumni Relations and events** | Reunion lists: New York, UK and Canada reunions, the LUMS at 40 Gala in New York, Homecoming and the Alumni Achievement Awards |
+| **Office of Advancement** | Alumni for networking, mentoring and fundraising outreach; engagement reporting; data for rankings such as QS |
+| **Security Office** | Verified alumni details for alumni car stickers and their collection |
+| **IT and administration** | Alumni data and requirements for the alumni portal (LUMS Connect) |
 
-Every list is checked before it goes out: duplicates removed, deceased alumni excluded, totals reconciled, and uncertain matches flagged for a person to review.
+Typical fields: name, email, phone, LinkedIn, employer, designation, department, industry, city, country, education and alumni status, always limited to what the request needs.
+
+## How every request is handled
+
+![From request to verified list](docs/request_flow.png)
+
+Every list is checked before it goes out: duplicates removed, deceased alumni excluded, totals reconciled, and uncertain matches flagged for a person to review. Where needed, I support the follow-up with email and telephone invitations.
 
 ## Workflow
 
@@ -40,7 +44,7 @@ Every list is checked before it goes out: duplicates removed, deceased alumni ex
 | 4. Analyse | [`04_analysis/`](04_analysis/) | KPI summary, year-on-year trends, running totals, age bands, top employers per school, healthcare alumni |
 | 5. Answer requests | [`05_work_requests/`](05_work_requests/) | Real requests from colleagues – each file states the request, approach, quality checks and result |
 | Continuous learning | [`06_learning_log/`](06_learning_log/) | Deliberate T-SQL practice alongside daily work, with the lesson from each session recorded |
-| Reference | [`docs/`](docs/) | [Data model](docs/data_model.md) and [data dictionary](docs/data_dictionary.md) |
+| Reference | [`docs/`](docs/) | [Data model](docs/data_model.md), [data dictionary](docs/data_dictionary.md) and the diagram code |
 
 ## Data model
 
@@ -48,16 +52,9 @@ Four tables linked by `roll_number`. Full details: [data model](docs/data_model.
 
 ![Data model](docs/data_model.png)
 
-| Table | Rows | Relationship to `alumni` |
-|---|---|---|
-| `alumni` | 22,794 | – |
-| `education` | 22,794 | exactly one per person |
-| `contact` | 22,794 | exactly one per person |
-| `employment` | 20,196 | zero or one per person → use `LEFT JOIN` for all alumni |
-
 ## Sample requests (one file each)
 
-Each file states the request, the approach, the quality checks and the result. Requests 06–08 were all delivered on a single day.
+Each file states the request, the approach, the quality checks and the result. Requests 06–08 were all delivered on a single, ordinary day.
 
 | # | Request | Result |
 |---|---|---|

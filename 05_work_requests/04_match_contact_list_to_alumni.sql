@@ -7,7 +7,7 @@
              3) loose name match (start of first name AND start of surname)
                 only as a fallback, labelled with CASE for manual review
    QUALITY : Testing showed name matching alone is unreliable:
-             '%Heer Cheema%' matched "Shaheer Cheema", one name matched two
+             a short first name inside a longer one (e.g. '%Ali%' in "Khalid"), one name matched two
              different people, and middle names caused misses. First name OR
              surname alone returned 7,591 rows; AND-ing the two returned ~20.
              '_' is a LIKE wildcard, so emails containing it use [_].

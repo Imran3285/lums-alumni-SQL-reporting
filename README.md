@@ -10,13 +10,7 @@ business requests with **T-SQL**.
 
 ## Workflow
 
-```mermaid
-flowchart LR
-    A["1. Prepare data<br/>merge 4 sources, clean,<br/>standardise, fill gaps"] --> B["2. Build database<br/>4 tables, keys,<br/>views, procedure"]
-    B --> C["3. Validate<br/>row counts, links,<br/>quality checks"]
-    C --> D["4. Analyse<br/>KPIs, trends,<br/>segmentation"]
-    D --> E["5. Answer requests<br/>lists and reports<br/>for colleagues"]
-```
+**Prepare data → Build database → Validate → Analyse → Answer requests**
 
 | Step | Folder | What's inside |
 |---|---|---|
@@ -25,7 +19,7 @@ flowchart LR
 | 3. Validate | [`03_data_validation/`](03_data_validation/) | Schema check, row counts and referential checks, completeness, duplicates, source conflicts |
 | 4. Analyse | [`04_analysis/`](04_analysis/) | KPI summary, year-on-year trends, running totals, age bands, top employers per school, healthcare alumni |
 | 5. Answer requests | [`05_work_requests/`](05_work_requests/) | Real requests from colleagues – each file states the request, approach, quality checks and result |
-| Learning log | [`06_learning_log/`](06_learning_log/) | My practice sessions, with what I learned from each mistake |
+| Continuous learning | [`06_learning_log/`](06_learning_log/) | Deliberate T-SQL practice alongside daily work, with the lesson from each session recorded |
 | Reference | [`docs/`](docs/) | [Data model](docs/data_model.md) and [data dictionary](docs/data_dictionary.md) |
 
 ## Data model
@@ -47,6 +41,9 @@ Four tables linked by `roll_number`:
 | 03 | Alumni from the 1995–2006 batches, for an admissions email campaign | 2,221 alumni delivered; 39 two-degree duplicates flagged |
 | 04 | Match an external contact list against the alumni database | 7 of 12 matched (6 by email/phone, 1 by name, flagged) |
 | 05 | Alumni currently working in UK healthcare, including the NHS | 31 alumni (19 healthcare, 12 pharma & life sciences) |
+| 06 | Alumni contacts in Sialkot and Faisalabad for a team visit | 567 alumni; 221 confirmed in the city now, the rest flagged as hometown only |
+| 07 | Employment and higher education for 163 scholarship recipients from an external Excel list | 148 matched (140 by roll number, 8 by name, flagged for checking) |
+| 08 | Alumni Achievement Award winners for the QS Rankings submission | 64 of 66 winners matched and returned in the requester's template |
 
 ## Selected findings
 - **Job data completeness** varies by program: only 3.5% of MBA alumni have no job record, versus about 25% of MSc and PhD alumni – a clear target for the next data-update campaign.
@@ -66,7 +63,9 @@ views · stored procedures · `INFORMATION_SCHEMA` · data validation · data cl
 
 **Tools:** Azure SQL Database (T-SQL) · Excel · Python · Git / GitHub
 
-## Learning log
+## Continuous learning
+Alongside the day-to-day requests above, I run short, deliberate practice sessions to sharpen specific T-SQL techniques and record what each one taught me. This is how I keep improving, and how the techniques in the work requests were built up.
+
 | Date | Session | Topics |
 |---|---|---|
 | 2026-11-14 | [Session 1 – basics](06_learning_log/2026-11-14_session1_basics.sql) | COUNT, WHERE, BETWEEN, HAVING, first JOIN |

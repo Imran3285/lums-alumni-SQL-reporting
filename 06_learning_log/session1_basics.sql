@@ -1,6 +1,6 @@
 /* =====================================================================
    Practice session 1 - The Alumni Office inbox
-   Date: 2026-11-14
+   Learned: July 2026 · Practice file on this database: November 2026
    ===================================================================== */
 
 -- R1. How many female alumni do we have?           Target: 8,188

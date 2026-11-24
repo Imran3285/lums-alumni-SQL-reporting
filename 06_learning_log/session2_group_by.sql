@@ -1,6 +1,6 @@
 /* =====================================================================
    Practice session 2 - GROUP BY drills
-   Date: 2026-11-16
+   Learned: mid-August to early September 2026 · Practice file on this database: November 2026
    Topics: COUNT, WHERE, GROUP BY, HAVING, TOP, first JOINs
    ===================================================================== */
 

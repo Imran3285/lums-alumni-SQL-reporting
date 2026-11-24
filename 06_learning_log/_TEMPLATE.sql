@@ -1,6 +1,6 @@
 /* =====================================================================
    Practice session <number> - <topic>
-   Date: YYYY-MM-DD
+   Learned: Month YYYY · Practice file: Month YYYY
    ===================================================================== */
 
 -- Q1. <the request, in plain English>              Target: <expected result>

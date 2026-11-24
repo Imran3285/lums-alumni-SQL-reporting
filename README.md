@@ -1,12 +1,32 @@
 # LUMS Alumni Analytics – SQL Project
 
-An end-to-end data analyst project on a real alumni database of **22,794 records**:
-from combining and cleaning raw files, through designing and loading a relational
-database on **Azure SQL Database**, to validating the data and answering real
-business requests with **T-SQL**.
+I manage the LUMS alumni database (44,000+ records) in the Office of Advancement and answer **data requests from multiple departments every day**. This repository shows how that work is done: a clean relational database on **Azure SQL**, validated, and queried with **T-SQL** to deliver accurate lists and reports on time.
 
-> **No personal data is stored in this repository.** It holds SQL code, table
-> structure and documentation only.
+> **No personal data is stored in this repository.** It holds SQL code, table structure and documentation only. The practice database used here has 22,794 records.
+
+## At a glance
+
+| | |
+|---|---|
+| **Database** | Azure SQL Database, 4 tables linked by `roll_number` |
+| **Records** | 22,794 alumni (practice set; the full database has 44,000+) |
+| **Requests documented** | 8 real requests, a sample of everyday work |
+| **Tools** | T-SQL, Excel, Python, Git |
+
+## The work behind LUMS events
+
+Most alumni events and visits at LUMS start with a data request. Typical requests I deliver:
+
+| Event or need | Data delivered |
+|---|---|
+| **New York reunion** and the **LUMS at 40 Gala in New York** (hosted by Friends of LUMS USA) | Alumni working or studying in the US, by city and seniority |
+| **UK and Canada reunions** (London, Toronto) | Alumni living or working in each country, with current contact details |
+| **Ambassador and delegation visits** to LUMS | Alumni living, working or studying in the visiting country |
+| **Alumni Homecoming** and the **Alumni Achievement Awards** | Batch lists, award winners and their current details |
+| **University rankings** (QS) and internal reports | Counts and lists in the requester's own template |
+| **Department and team visits** in Pakistan | Alumni by city, with a flag for how sure we are they live there now |
+
+Every list is checked before it goes out: duplicates removed, deceased alumni excluded, totals reconciled, and uncertain matches flagged for a person to review.
 
 ## Workflow
 
@@ -24,7 +44,9 @@ business requests with **T-SQL**.
 
 ## Data model
 
-Four tables linked by `roll_number`:
+Four tables linked by `roll_number`. Full details: [data model](docs/data_model.md) and [data dictionary](docs/data_dictionary.md).
+
+![Data model](docs/data_model.png)
 
 | Table | Rows | Relationship to `alumni` |
 |---|---|---|
@@ -33,7 +55,9 @@ Four tables linked by `roll_number`:
 | `contact` | 22,794 | exactly one per person |
 | `employment` | 20,196 | zero or one per person → use `LEFT JOIN` for all alumni |
 
-## Real requests answered
+## Sample requests (one file each)
+
+Each file states the request, the approach, the quality checks and the result. Requests 06–08 were all delivered on a single day.
 
 | # | Request | Result |
 |---|---|---|
@@ -47,7 +71,7 @@ Four tables linked by `roll_number`:
 
 ## Selected findings
 - **Job data completeness** varies by program: only 3.5% of MBA alumni have no job record, versus about 25% of MSc and PhD alumni – a clear target for the next data-update campaign.
-- **SBASSE sends the highest share of alumni abroad (42%)**, even though SDSB has the most alumni overseas in absolute numbers.
+- **SBASSE sends the highest share of alumni abroad (42%)**, while MGSHSS has the most alumni abroad in absolute numbers (2,779).
 - Graduating classes dipped in 2020 (−73) and jumped in 2021 (+258), consistent with delayed graduations.
 
 ## Quality practices

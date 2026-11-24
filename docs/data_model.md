@@ -2,43 +2,7 @@
 
 Four tables, all linked by `roll_number` (one person = one roll number).
 
-```mermaid
-erDiagram
-  ALUMNI ||--|| EDUCATION : "studied"
-  ALUMNI ||--o| EMPLOYMENT : "works"
-  ALUMNI ||--|| CONTACT : "reached at"
-  ALUMNI {
-    nvarchar roll_number PK
-    nvarchar full_name
-    nvarchar gender
-    date date_of_birth
-    nvarchar deceased
-  }
-  EDUCATION {
-    nvarchar roll_number PK
-    nvarchar program
-    nvarchar major
-    nvarchar school
-    int graduation_year
-  }
-  EMPLOYMENT {
-    int employment_id PK
-    nvarchar roll_number FK
-    nvarchar current_designation
-    nvarchar current_company
-    nvarchar industry
-    nvarchar last_experience_company
-  }
-  CONTACT {
-    nvarchar roll_number PK
-    nvarchar personal_email
-    nvarchar mobile
-    nvarchar city
-    nvarchar country
-    nvarchar residence
-    nvarchar linkedin_url
-  }
-```
+![Data model: four tables linked by roll_number](data_model.png)
 
 | Table | Rows | Relationship to `alumni` | Join to use |
 |---|---|---|---|

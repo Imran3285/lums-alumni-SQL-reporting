@@ -76,23 +76,22 @@ def data_model(path):
     fig.savefig(path, dpi=130); plt.close(fig); print("saved", path)
 
 
-def request_flow(path):
+def workflow(path):
     steps = [
-        ("Receive", "a request from\na department"),
-        ("Understand", "the purpose and\nwho it is for"),
-        ("Define", "who to include:\nalumni or not,\nwhere, batch, role"),
-        ("Query", "SQL on the\n4 linked tables"),
-        ("Validate", "CRM and LinkedIn,\nno duplicates,\nno deceased"),
-        ("Deliver", "in their format,\nthen invitations\nand calls"),
+        ("Prepare data", "merge 4 sources,\nclean, standardise,\nfill gaps"),
+        ("Build database", "4 tables, keys,\nviews, procedure"),
+        ("Validate", "row counts, links,\nquality checks"),
+        ("Analyse", "KPIs, trends,\nsegmentation"),
+        ("Answer requests", "lists and reports\nfor colleagues"),
     ]
-    colors = [INK2, INK2, BLUE, BLUE, BLUE, AQUA]
+    colors = [INK2, BLUE, BLUE, BLUE, AQUA]
     fig = plt.figure(figsize=(12, 3.4))
-    fig.text(0.05, 0.9, "From request to verified list: how every data request is handled",
+    fig.text(0.05, 0.9, "From raw files to answered requests in five steps",
              fontsize=16, fontweight="bold", color=INK)
-    fig.text(0.05, 0.81, "The same six steps for event invitations, delegations, reunions, rankings and internal reports",
+    fig.text(0.05, 0.81, "Each step has its own folder in this repository",
              fontsize=11, color=INK2)
     ax = fig.add_axes([0.02, 0.04, 0.96, 0.72]); ax.set_xlim(0, 100); ax.set_ylim(4, 28); ax.axis("off")
-    w, gap, x0 = 14.2, 2.4, 2.5
+    w, gap, x0 = 17.0, 2.9, 2.5
     for i, ((verb, detail), c) in enumerate(zip(steps, colors)):
         x = x0 + i * (w + gap)
         rbox(ax, x, 6, w, 20, "white", c, lw=1.8)
@@ -100,7 +99,7 @@ def request_flow(path):
         ax.text(x + 2.9, 22.2, str(i + 1), fontsize=10.5, fontweight="bold", color="white", ha="center",
                 va="center", zorder=5)
         ax.text(x + 1.6, 17.6, verb, fontsize=12, fontweight="bold", color=INK, va="center", zorder=5)
-        ax.text(x + 1.6, 14.6, detail, fontsize=9.6, color=INK2, va="top", linespacing=1.45, zorder=5)
+        ax.text(x + 1.6, 14.6, detail, fontsize=9.8, color=INK2, va="top", linespacing=1.45, zorder=5)
         if i < len(steps) - 1:
             ax.annotate("", (x + w + gap - 0.2, 16), (x + w + 0.2, 16),
                         arrowprops=dict(arrowstyle="-|>", color=LINE, lw=1.6, mutation_scale=14))
@@ -109,4 +108,4 @@ def request_flow(path):
 
 if __name__ == "__main__":
     data_model("docs/data_model.png")
-    request_flow("docs/request_flow.png")
+    workflow("docs/workflow.png")

@@ -1,40 +1,23 @@
 # LUMS Alumni Analytics – SQL Project
 
-I manage the LUMS alumni database (44,000+ records) in the Office of Advancement and turn **data requests from departments across the university into accurate, verified lists, every day**. This repository shows how: a relational database on **Azure SQL**, validated, and queried with **T-SQL**.
+An end-to-end data analyst project on the LUMS alumni database: from combining and
+cleaning raw files, through designing and loading a relational database on
+**Azure SQL Database**, to validating the data and answering real business requests
+with **T-SQL**.
 
-> **No personal data is stored in this repository.** It holds SQL code, table structure and documentation only. The practice database used here has 22,794 records.
+I manage the alumni database (44,000+ records) in the Office of Advancement and turn
+**data requests from departments across LUMS into accurate, verified lists every day**:
+American Business Forum (ABF)–LUMS events, international delegations (Japan, US, UK and
+others), the New York, UK and Canada reunions, the LUMS at 40 Gala in New York, the
+Security Office's alumni car stickers and the alumni portal. This repository uses a
+practice set of **22,794 records**.
 
-## At a glance
-
-| | |
-|---|---|
-| **Database** | Azure SQL Database: 4 tables linked by `roll_number` |
-| **Records** | 22,794 in this practice set (the full database has 44,000+) |
-| **Requests documented** | 8 real requests, a sample of everyday work |
-| **Tools** | T-SQL, Excel, CRM, Power BI, Python, Git |
-
-## Who I deliver data for
-
-| Requester | What they need |
-|---|---|
-| **American Business Forum (ABF) and LUMS events** | Alumni and non-alumni attendee lists for invitations, including an event with the IT Minister and a follow-up event in Islamabad |
-| **International delegations** (Japan, US, UK and others) | Alumni relevant to each delegation, by country, sector or role |
-| **Alumni Relations and events** | Reunion lists: New York, UK and Canada reunions, the LUMS at 40 Gala in New York, Homecoming and the Alumni Achievement Awards |
-| **Office of Advancement** | Alumni for networking, mentoring and fundraising outreach; engagement reporting; data for rankings such as QS |
-| **Security Office** | Verified alumni details for alumni car stickers and their collection |
-| **IT and administration** | Alumni data and requirements for the alumni portal (LUMS Connect) |
-
-Typical fields: name, email, phone, LinkedIn, employer, designation, department, industry, city, country, education and alumni status, always limited to what the request needs.
-
-## How every request is handled
-
-![From request to verified list](docs/request_flow.png)
-
-Every list is checked before it goes out: duplicates removed, deceased alumni excluded, totals reconciled, and uncertain matches flagged for a person to review. Where needed, I support the follow-up with email and telephone invitations.
+> **No personal data is stored in this repository.** It holds SQL code, table
+> structure and documentation only.
 
 ## Workflow
 
-**Prepare data → Build database → Validate → Analyse → Answer requests**
+![From raw files to answered requests in five steps](docs/workflow.png)
 
 | Step | Folder | What's inside |
 |---|---|---|
@@ -48,13 +31,22 @@ Every list is checked before it goes out: duplicates removed, deceased alumni ex
 
 ## Data model
 
-Four tables linked by `roll_number`. Full details: [data model](docs/data_model.md) and [data dictionary](docs/data_dictionary.md).
+Four tables linked by `roll_number`:
 
 ![Data model](docs/data_model.png)
 
-## Sample requests (one file each)
+| Table | Rows | Relationship to `alumni` |
+|---|---|---|
+| `alumni` | 22,794 | – |
+| `education` | 22,794 | exactly one per person |
+| `contact` | 22,794 | exactly one per person |
+| `employment` | 20,196 | zero or one per person → use `LEFT JOIN` for all alumni |
 
-Each file states the request, the approach, the quality checks and the result. Requests 06–08 were all delivered on a single, ordinary day.
+## Real requests answered
+
+A sample of everyday requests. Every list is checked before it goes out: duplicates
+removed, deceased alumni excluded, totals reconciled and uncertain matches flagged.
+Requests 06–08 were all delivered on a single, ordinary day.
 
 | # | Request | Result |
 |---|---|---|
@@ -79,13 +71,13 @@ Each file states the request, the approach, the quality checks and the result. R
 
 ## Skills
 `JOIN` (INNER / LEFT / anti-join) · `GROUP BY` / `HAVING` · `CASE` · `COALESCE` · `LIKE` patterns ·
-CTEs · window functions (`ROW_NUMBER`, `DENSE_RANK`, `LAG`, running totals) · date functions ·
+CTEs · window functions (`ROW_NUMBER`, `DENSE_RANK`, `LAG`, running totals) · `OUTER APPLY` · date functions ·
 views · stored procedures · `INFORMATION_SCHEMA` · data validation · data cleaning · GDPR-conscious reporting
 
-**Tools:** Azure SQL Database (T-SQL) · Excel · Python · Git / GitHub
+**Tools:** Azure SQL Database (T-SQL) · Excel · CRM · Power BI · Python · Git / GitHub
 
 ## Continuous learning
-Alongside the day-to-day requests above, I run short, deliberate practice sessions to sharpen specific T-SQL techniques and record what each one taught me. This is how I keep improving, and how the techniques in the work requests were built up.
+Alongside the day-to-day requests above, I run short, deliberate practice sessions to sharpen specific T-SQL techniques and record what each one taught me.
 
 | Date | Session | Topics |
 |---|---|---|

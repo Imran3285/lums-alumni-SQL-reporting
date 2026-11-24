@@ -31,7 +31,7 @@ flowchart LR
 | 2. Build database | [`02_database_setup/`](02_database_setup/) | `CREATE TABLE` with primary/foreign keys, loading approach, reporting views, a parameterised stored procedure |
 | 3. Validate | [`03_data_validation/`](03_data_validation/) | Schema check, row counts and referential checks, completeness, duplicates, source conflicts |
 | 4. Analyse | [`04_analysis/`](04_analysis/) | KPI summary, year-on-year trends, running totals, age bands, top employers per school, healthcare alumni |
-| 5. Answer requests | [`05_work_requests/`](05_work_requests/) | Real requests from colleagues – each file states the request, approach, quality checks and result |
+| 5. Answer requests | [`05_work_requests/`](05_work_requests/) | 7 production queries – each file states the business question, approach, validation and output |
 | Continuous learning | [`06_learning_log/`](06_learning_log/) | Deliberate T-SQL practice alongside daily work, with the lesson from each session recorded |
 | Reference | [`docs/`](docs/) | [Data model](docs/data_model.md), [data dictionary](docs/data_dictionary.md) and the diagram code |
 
@@ -48,21 +48,21 @@ Four tables linked by `roll_number`:
 | `contact` | 22,794 | exactly one per person |
 | `employment` | 20,196 | zero or one per person → use `LEFT JOIN` for all alumni |
 
-## Real requests answered
+## Data requests answered (7 queries)
 
-A sample of everyday requests. Every list is checked before it goes out: duplicates
-removed, deceased alumni excluded, totals reconciled and uncertain matches flagged.
-Requests 06–08 were all delivered on a single, ordinary day.
+Seven production queries, a sample of the everyday data requests I receive. Every output is
+validated before delivery: duplicates removed, deceased alumni excluded, totals reconciled and
+low-confidence matches flagged for review. Queries 05–07 were delivered on a single, ordinary day.
 
-| # | Request | Result |
-|---|---|---|
-| 01–02 | Top 3 most senior alumni in each graduating batch, for an alumni event | 63 alumni across 21 batches |
-| 03 | Alumni from the 1995–2006 batches, for an admissions email campaign | 2,221 alumni delivered; 39 two-degree duplicates flagged |
-| 04 | Match an external contact list against the alumni database | 7 of 12 matched (6 by email/phone, 1 by name, flagged) |
-| 05 | Alumni currently working in UK healthcare, including the NHS | 31 alumni (19 healthcare, 12 pharma & life sciences) |
-| 06 | Alumni contacts in Sialkot and Faisalabad for a team visit | 567 alumni; 221 confirmed in the city now, the rest flagged as hometown only |
-| 07 | Employment and higher education for 163 scholarship recipients from an external Excel list | 148 matched (140 by roll number, 8 by name, flagged for checking) |
-| 08 | Alumni Achievement Award winners for the QS Rankings submission | 64 of 66 winners matched and returned in the requester's template |
+| # | Business question | Approach | Output |
+|---|---|---|---|
+| [01](05_work_requests/01_top3_senior_alumni_per_batch.sql) | Rank the 3 most senior alumni in each graduating cohort, for an alumni event | Rule-based seniority scoring (`CASE`) and window ranking (`ROW_NUMBER` per cohort) | 63 alumni across 21 cohorts |
+| [02](05_work_requests/02_alumni_list_1995_2006.sql) | Extract the 1995–2006 cohorts for an admissions email campaign | Cohort filter with de-duplication of dual-degree records | 2,221 records; 39 dual-degree duplicates flagged |
+| [03](05_work_requests/03_match_contact_list_to_alumni.sql) | Match an external contact list to the alumni database | Record linkage on email and phone, with name as a flagged fallback | 7 of 12 matched (6 exact, 1 by name) |
+| [04](05_work_requests/04_uk_healthcare_alumni.sql) | Identify alumni working in UK healthcare, including the NHS | Segmentation by industry and employer, with a geographic filter | 31 alumni (19 healthcare, 12 pharma and life sciences) |
+| [05](05_work_requests/05_city_visit_alumni_list.sql) | Geo-segment alumni in Sialkot and Faisalabad for a team visit | Location matching across four fields, with a confidence label per record | 567 alumni; 221 with a high-confidence current location |
+| [06](05_work_requests/06_match_external_list_roll_or_name.sql) | Enrich 163 scholarship recipients with employment and higher-education data | Record linkage: ID first, then a unique-name fallback (`OUTER APPLY`) | 148 of 163 matched (140 by ID, 8 by name, flagged) |
+| [07](05_work_requests/07_award_winners_for_qs_rankings.sql) | Compile Alumni Achievement Award winners for the QS Rankings submission | External list matched on name and cohort year, returned in the requester's schema | 64 of 66 winners matched |
 
 ## Selected findings
 - **Job data completeness** varies by program: only 3.5% of MBA alumni have no job record, versus about 25% of MSc and PhD alumni – a clear target for the next data-update campaign.

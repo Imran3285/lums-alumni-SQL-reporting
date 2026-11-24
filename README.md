@@ -5,6 +5,8 @@ from combining and cleaning raw files, through designing and loading a relationa
 database on **Azure SQL Database**, to validating the data and answering real
 business requests with **T-SQL**.
 
+**Headline:** a working Azure SQL database built from four messy sources, validated, and used to answer **8 real requests from colleagues**, from senior-alumni lists for events to the awards list for the QS rankings submission.
+
 > **No personal data is stored in this repository.** It holds SQL code, table
 > structure and documentation only.
 
@@ -20,11 +22,13 @@ business requests with **T-SQL**.
 | 4. Analyse | [`04_analysis/`](04_analysis/) | KPI summary, year-on-year trends, running totals, age bands, top employers per school, healthcare alumni |
 | 5. Answer requests | [`05_work_requests/`](05_work_requests/) | Real requests from colleagues – each file states the request, approach, quality checks and result |
 | Continuous learning | [`06_learning_log/`](06_learning_log/) | Deliberate T-SQL practice alongside daily work, with the lesson from each session recorded |
-| Reference | [`docs/`](docs/) | [Data model](docs/data_model.md) and [data dictionary](docs/data_dictionary.md) |
+| Reference | [`docs/`](docs/), [`charts/`](charts/) | [Data model](docs/data_model.md), [data dictionary](docs/data_dictionary.md), and the code for the charts in this README |
 
 ## Data model
 
 Four tables linked by `roll_number`:
+
+![Data model](images/00_data_model.png)
 
 | Table | Rows | Relationship to `alumni` |
 |---|---|---|
@@ -46,9 +50,23 @@ Four tables linked by `roll_number`:
 | 08 | Alumni Achievement Award winners for the QS Rankings submission | 64 of 66 winners matched and returned in the requester's template |
 
 ## Selected findings
-- **Job data completeness** varies by program: only 3.5% of MBA alumni have no job record, versus about 25% of MSc and PhD alumni – a clear target for the next data-update campaign.
-- **SBASSE sends the highest share of alumni abroad (42%)**, even though SDSB has the most alumni overseas in absolute numbers.
-- Graduating classes dipped in 2020 (−73) and jumped in 2021 (+258), consistent with delayed graduations.
+
+### Job data is least complete for MSc and PhD alumni
+Only 3.5% of MBA alumni have no job record, against about 25% of MSc and PhD alumni: a clear target for the next data-update campaign. Query: [`03_job_data_completeness_by_program.sql`](03_data_validation/03_job_data_completeness_by_program.sql).
+
+![Job data by program](images/02_job_data_by_program.png)
+
+### SBASSE has the highest share of alumni abroad
+42% of SBASSE alumni live outside Pakistan. MGSHSS has the most alumni abroad in absolute numbers (2,779). Query: [`01_kpi_reporting.sql`](04_analysis/01_kpi_reporting.sql).
+
+![Alumni abroad by school](images/03_abroad_by_school.png)
+
+### Graduating classes dipped in 2020 and jumped in 2021
+Classes fell by 73 in 2020 and rose by 258 in 2021, consistent with graduations delayed by Covid.
+
+![Graduates by year](images/01_graduates_by_year.png)
+
+Charts are drawn by [`charts/make_charts.py`](charts/make_charts.py) from aggregate counts in `charts/data/` (no personal data).
 
 ## Quality practices
 - Test filters against real values before trusting them – e.g. `LIKE '%Wales%'` also matched *New South Wales*, and the industry value is `Medical Device` (singular).

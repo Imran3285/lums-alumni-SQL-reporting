@@ -1,6 +1,6 @@
 /* =====================================================================
    Practice session 4 - JOIN + CASE
-   Learned: October 2026 · Practice file on this database: November 2026
+   Learned: Oct–Nov 2026 · Practice file on this database: November 2026
    Topics: CASE labels, GROUP BY a CASE, SUM(CASE) pivots, CTEs
    Rules: first true WHEN wins; put IS NULL checks first;
           GROUP BY the whole CASE (or use a CTE to name it once).

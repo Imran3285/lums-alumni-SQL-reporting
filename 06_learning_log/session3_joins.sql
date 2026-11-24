@@ -1,6 +1,6 @@
 /* =====================================================================
    Practice session 3 - JOIN ladder
-   Learned: late September 2026 · Practice file on this database: November 2026
+   Learned: Sep–Oct 2026 · Practice file on this database: November 2026
    Topics: INNER JOIN, LEFT JOIN + IS NULL (anti-join), NOT EXISTS,
            3-table joins, JOIN + GROUP BY
    Rule: name the tables first ("I need table __ and table __"), then write.

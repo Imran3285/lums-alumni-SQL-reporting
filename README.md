@@ -77,11 +77,11 @@ views · stored procedures · `INFORMATION_SCHEMA` · data validation · data cl
 **Tools:** Azure SQL Database (T-SQL) · Excel · CRM · Power BI · Python · Git / GitHub
 
 ## Continuous learning
-I started learning SQL in July 2026 and keep building on it alongside the day-to-day requests above. Each practice file below revisits one stage on this database (written in November 2026) and records what it taught me.
+I started learning SQL in June 2026 and keep building on it alongside the day-to-day requests above. Each practice file below revisits one stage on this database (written in November 2026) and records what it taught me.
 
 | Learned | Session | Topics |
 |---|---|---|
-| July 2026 | [Session 1 – basics](06_learning_log/session1_basics.sql) | COUNT, WHERE, BETWEEN, HAVING, first JOIN |
-| Mid-August to early September 2026 | [Session 2 – GROUP BY](06_learning_log/session2_group_by.sql) | GROUP BY, HAVING, TOP vs LIMIT |
-| Late September 2026 | [Session 3 – JOINs](06_learning_log/session3_joins.sql) | INNER vs LEFT JOIN, anti-join, NOT EXISTS, 3-table joins |
-| October 2026 | [Session 4 – JOIN + CASE](06_learning_log/session4_joins_and_case.sql) | CASE labels, CTEs, SUM(CASE) pivots |
+| Jun–Jul 2026 | [Session 1 – basics](06_learning_log/session1_basics.sql) | COUNT, WHERE, BETWEEN, HAVING, first JOIN |
+| Aug–Sep 2026 | [Session 2 – GROUP BY](06_learning_log/session2_group_by.sql) | GROUP BY, HAVING, TOP vs LIMIT |
+| Sep–Oct 2026 | [Session 3 – JOINs](06_learning_log/session3_joins.sql) | INNER vs LEFT JOIN, anti-join, NOT EXISTS, 3-table joins |
+| Oct–Nov 2026 | [Session 4 – JOIN + CASE](06_learning_log/session4_joins_and_case.sql) | CASE labels, CTEs, SUM(CASE) pivots |

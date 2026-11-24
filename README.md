@@ -7,7 +7,7 @@ with **T-SQL**.
 
 I manage the alumni database (44,000+ records) in the Office of Advancement and turn
 **data requests from departments across LUMS into accurate, verified lists every day**:
-American Business Forum (ABF)–LUMS events, international delegations (Japan, US, UK and
+American Business Forum (ABF)–LUMS events, international delegations (Japan, France, and
 others), the New York, UK and Canada reunions, the LUMS at 40 Gala in New York, the
 Security Office's alumni car stickers and the alumni portal. This repository uses a
 practice set of **22,794 records**.

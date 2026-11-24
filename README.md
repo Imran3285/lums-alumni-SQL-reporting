@@ -17,7 +17,13 @@ practice set of **22,794 records**.
 
 ## Workflow
 
-![From raw files to answered requests in five steps](docs/workflow.png)
+```mermaid
+flowchart LR
+    A["1. Prepare data<br/>merge 4 sources, clean,<br/>standardise, fill gaps"] --> B["2. Build database<br/>4 tables, keys,<br/>views, procedure"]
+    B --> C["3. Validate<br/>row counts, links,<br/>quality checks"]
+    C --> D["4. Analyse<br/>KPIs, trends,<br/>segmentation"]
+    D --> E["5. Answer requests<br/>lists and reports<br/>for colleagues"]
+```
 
 | Step | Folder | What's inside |
 |---|---|---|

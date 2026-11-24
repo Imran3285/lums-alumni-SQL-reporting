@@ -108,4 +108,3 @@ def workflow(path):
 
 if __name__ == "__main__":
     data_model("docs/data_model.png")
-    workflow("docs/workflow.png")
